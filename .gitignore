@@ -1,0 +1,6 @@
+.ftpquota
+error_log
+composer.lock
+vendor
+logs
+config.php
