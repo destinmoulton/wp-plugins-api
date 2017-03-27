@@ -2,9 +2,9 @@
 A REST API to access Events Manager data.
 
 ### Features
-Provides REST endpoints to perform queries on events. Data is presented as JSON.
+Provides REST endpoints to perform event queries. Data is presented as JSON.
 
-This does not allow the creation/submission of events.
+This API does not allow the creation/submission of events.
 
 ### Configuration
 Rename or copy `app/config.template.php` to `app/config.php`. Alter the database configuration values to match your Wordpress installation.
