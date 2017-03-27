@@ -9,6 +9,14 @@ This API does not allow the creation/submission of events.
 ### Configuration
 Rename or copy `app/config.template.php` to `app/config.php`. Alter the database configuration values to match your Wordpress installation.
 
+```php
+$config['db']['host']   = "localhost";
+$config['db']['user']   = "username";
+$config['db']['pass']   = "password";
+$config['db']['dbname'] = "wordpress_database";
+$config['db']['charset'] = "utf8";
+```
+
 It is highly recommended that the database user be given **READ ONLY** access to the Wordpress database.
 
 ### NotORM
