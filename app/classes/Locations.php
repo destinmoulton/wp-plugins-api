@@ -21,6 +21,7 @@ class Locations {
 
     function getLocation($location_id){
         if(empty($this->locations)){
+            // Cache the locations
             $this->getCacheLocations();
         }
 
