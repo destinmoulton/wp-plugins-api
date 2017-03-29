@@ -14,8 +14,16 @@ class Locations {
 
         $rows = [];
         foreach ($locations as $loc){
-            $rows[] = $loc;
+            $rows[$loc['location_id']] = $loc;
         }
         $this->locations = $rows;
+    }
+
+    function getLocation($location_id){
+        if(empty($this->locations)){
+            $this->getCacheLocations();
+        }
+
+        return (isset($this->locations[$location_id]))? $this->locations[$location_id]: "";
     }
 }
