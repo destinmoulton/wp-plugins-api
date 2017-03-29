@@ -1,4 +1,4 @@
-<?
+<?php
 // Slim Framework configuration
 // init.php contains the Slim config initialization
 $config['displayErrorDetails'] = true;
