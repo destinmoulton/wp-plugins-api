@@ -1,13 +1,17 @@
 <?php
 
+require('Locations.php');
 
 class Events{
     function __construct($db, $logger){
         $this->db = $db;
         $this->logger = $logger;
+
     }
 
     function getDateRange($start_date, $end_date){
+        $locations = new Locations();
+
         $events = $this->db->ltdbsem_events()
                             ->where("event_start_date >= ? AND event_end_date <= ?", $start_date, $end_date)
                             ->order("event_id DESC")
@@ -15,7 +19,12 @@ class Events{
 
         $rows = [];
         foreach ($events as $event){
-            $rows[] = $event;
+            $evData = $event;
+
+            // Add the location data to the array
+            $evData['location'] = $locations->getLocation($event['location_id']);
+
+            $rows[] = $evData;
         }
         return $rows;
     }
