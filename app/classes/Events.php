@@ -14,7 +14,7 @@ class Events{
 
         $events = $this->db->ltdbsem_events()
                             ->where("event_start_date >= ? AND event_end_date <= ?", $start_date, $end_date)
-                            ->order("event_id DESC")
+                            ->order("event_start_date ASC, event_start_time ASC")
                             ->limit(30);
 
         $rows = [];
