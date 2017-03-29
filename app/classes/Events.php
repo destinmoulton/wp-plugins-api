@@ -9,11 +9,11 @@ class Events{
 
     }
 
-    function getDateRange($start_date, $end_date){
+    function getDateRange($date){
         $locations = new Locations($this->db, $this->logger);
 
         $events = $this->db->ltdbsem_events()
-                            ->where("event_start_date >= ? AND event_end_date <= ?", $start_date, $end_date)
+                            ->where("event_start_date = ?", $date)
                             ->order("event_start_date ASC, event_start_time ASC")
                             ->limit(30);
 
