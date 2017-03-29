@@ -10,7 +10,7 @@ class Events{
     }
 
     function getDateRange($start_date, $end_date){
-        $locations = new Locations();
+        $locations = new Locations($this->db, $this->logger);
 
         $events = $this->db->ltdbsem_events()
                             ->where("event_start_date >= ? AND event_end_date <= ?", $start_date, $end_date)
