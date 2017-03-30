@@ -6,5 +6,7 @@ class Images {
         $this->logger = $logger;
     }
 
-    
+    function getImageForEvent($post_id){
+        
+    }
 }
