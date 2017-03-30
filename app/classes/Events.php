@@ -28,8 +28,20 @@ class Events{
 
             // Add the attached image to the array
             $evData['image_url'] = $images->getImageForEvent($event['post_id']);
+            
+            $evData['post_content'] = $this->_cleanString($event['post_content']);
+        
             $rows[] = $evData;
         }
         return $rows;
+    }
+
+    function _cleanString($str){
+        $new = strip_tags($str);
+        $new = html_entity_decode($new);
+        $new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
+        // Replace multiple spaces
+        $new = preg_replace('/ +/', ' ', $new);
+        return trim($new);
     }
 }
