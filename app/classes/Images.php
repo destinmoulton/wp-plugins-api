@@ -7,7 +7,7 @@ class Images {
     }
 
     function getImageForEvent($post_id){
-        //ltdbspostmeta _thumbnail_id
+        // Get the thumbnail post_id from postmeta
         $meta = $this->db->ltdbspostmeta()
                          ->where("post_id", $post_id)
                          ->where("meta_key", "_thumbnail_id")
@@ -16,6 +16,7 @@ class Images {
             return "";
         }
 
+        // Get the post with the thumbnail info
         $post = $this->db->ltdbsposts()
                               ->where("ID", $meta[0]['meta_value'])
                               ->limit(1);
