@@ -6,7 +6,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->get('/events/{date}', function (Request $request, Response $response, $args) {
     $name = $request->getAttribute('name');
     $events = new Events($this->db, $this->logger);
-    $evs = $events->getDateRange($args['date']);
+    $evs = $events->getForDate($args['date']);
     $newResponse = $response->withJson(['events'=>$evs]);
 
     return $newResponse;
