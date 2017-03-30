@@ -10,7 +10,7 @@ class Events{
 
     }
 
-    function getDateRange($date){
+    function getForDate($date){
         $locations = new Locations($this->db, $this->logger);
         $images = new Images($this->db, $this->logger);
 
