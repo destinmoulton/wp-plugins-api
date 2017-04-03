@@ -23,6 +23,8 @@ class Events{
         foreach ($events as $event){
             $evData = $event;
 
+            $evData['event_name'] = html_entity_decode($event['event_name']);
+
             // Add the location data to the array
             $evData['location'] = $locations->getLocation($event['location_id']);
 
