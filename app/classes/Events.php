@@ -32,7 +32,7 @@ class Events{
             $evData['image_url'] = $images->getImageForEvent($event['post_id']);
             
             $evData['post_content'] = $this->_cleanString($event['post_content']);
-            $evData['post_content_orig'] = $event['post_content'];
+            
             $rows[] = $evData;
         }
         return $rows;
