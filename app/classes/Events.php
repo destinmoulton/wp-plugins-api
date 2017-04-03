@@ -40,7 +40,7 @@ class Events{
 
     function _cleanString($str){
         $new = strip_tags($str);
-        $new = html_entity_decode($new);
+        $new = utf8_decode($new);
         $new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
         // Replace multiple spaces
         $new = preg_replace('/\s+/S', " ", $new);
