@@ -43,7 +43,8 @@ class Events{
         $new = html_entity_decode($new);
         $new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
         // Replace multiple spaces
-        $new = preg_replace('/ +/', ' ', $new);
+        $new = preg_replace('/\s+/S', " ", $new);
+        //$new = preg_replace('/ +/', ' ', $new);
         return trim($new);
     }
 }
