@@ -41,7 +41,7 @@ class Events{
     function _cleanString($str){
         $new = strip_tags($str);
         $new = str_replace("\xC2\xA0", ' ', html_entity_decode($new));
-        //$new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
+        $new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
         // Replace multiple spaces
         $new = preg_replace('/\s+/S', " ", $new);
 
