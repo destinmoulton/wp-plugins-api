@@ -15,8 +15,7 @@ class Events{
         $images = new Images($this->db, $this->logger);
 
         $events = $this->db->ltdbsem_events()
-                            ->where("event_start_date = ?", $date)
-                            ->and("event_status = 1")
+                            ->where("event_start_date = ? AND event_status = 1", $date)
                             ->order("event_start_date ASC, event_start_time ASC")
                             ->limit(30);
 
