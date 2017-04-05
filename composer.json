@@ -1,7 +1,6 @@
 {
     "require": {
         "slim/slim": "^3.8",
-        "monolog/monolog": "^1.22",
-        "soundasleep/html2text": "^0.3.4"
+        "monolog/monolog": "^1.22"
     }
 }

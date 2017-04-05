@@ -1,4 +1,5 @@
 <?php
+require(__DIR__.'/../lib/html2text/Html2Text.php');
 
 require('Locations.php');
 require('Images.php');
@@ -31,7 +32,7 @@ class Events{
             // Add the attached image to the array
             $evData['image_url'] = $images->getImageForEvent($event['post_id']);
             
-            $evData['post_content'] = Html2Text\Html2Text::convert($event['post_content']);
+            $evData['post_content'] = Html2Text::convert($event['post_content']);
             
             $rows[] = $evData;
         }
