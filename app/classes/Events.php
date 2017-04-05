@@ -16,7 +16,7 @@ class Events{
 
         $events = $this->db->ltdbsem_events()
                             ->where("event_start_date = ?", $date)
-                            ->and("event_status", 1)
+                            ->and("event_status = 1")
                             ->order("event_start_date ASC, event_start_time ASC")
                             ->limit(30);
 
