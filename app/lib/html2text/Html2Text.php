@@ -323,11 +323,16 @@ class Html2Text {
 				break;
 
 			case "a":
+				$output = trim($output);
+				/**
+				 * Modified by: Destin Moulton
+				 * Removed because we don't want links
 				// links are returned in [text](link) format
 				$href = $node->getAttribute("href");
 
 				$output = trim($output);
-
+				
+				
 				// remove double [[ ]] s from linking images
 				if (substr($output, 0, 1) == "[" && substr($output, -1) == "]") {
 					$output = substr($output, 1, strlen($output) - 2);
@@ -362,6 +367,7 @@ class Html2Text {
 						}
 					}
 				}
+				**/
 
 				// does the next node require additional whitespace?
 				switch ($nextName) {
