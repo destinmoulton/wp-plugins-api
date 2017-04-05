@@ -15,7 +15,7 @@ class Events{
         $images = new Images($this->db, $this->logger);
 
         $events = $this->db->ltdbsem_events()
-                            ->where("event_start_date = ? AND event_status = 1", $date)
+                            ->where("event_start_date = ? AND event_status = 1 AND recurrence = 0", $date)
                             ->order("event_start_date ASC, event_start_time ASC")
                             ->limit(30);
 
@@ -41,7 +41,7 @@ class Events{
     function _cleanString($str){
         $new = strip_tags($str);
         $new = str_replace("\xC2\xA0", ' ', html_entity_decode($new));
-        $new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
+        //$new = str_replace(array("\r", "\n", "\\r", "\\n"), ' ', $new);
         // Replace multiple spaces
         $new = preg_replace('/\s+/S', " ", $new);
 
