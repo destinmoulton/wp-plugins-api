@@ -1,7 +1,5 @@
 <?php
 
-require(__DIR__.'/../lib/html2text.php');
-
 require('Locations.php');
 require('Images.php');
 
