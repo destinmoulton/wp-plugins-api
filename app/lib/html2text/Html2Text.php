@@ -378,6 +378,11 @@ class Html2Text {
 				break;
 
 			case "img":
+				$output = "";
+				/**
+				 * @modified: Destin Moulton
+				 * Don't include image information.
+				 *
 				if ($node->getAttribute("title")) {
 					$output = "[" . $node->getAttribute("title") . "]";
 				} elseif ($node->getAttribute("alt")) {
@@ -385,6 +390,8 @@ class Html2Text {
 				} else {
 					$output = "";
 				}
+				*/
+
 				break;
 
 			case "li":
