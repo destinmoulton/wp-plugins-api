@@ -32,6 +32,8 @@ class Events{
             // Add the attached image to the array
             $evData['image_url'] = $images->getImageForEvent($event['post_id']);
             
+            // Convert the html content into text
+            //    NOTE: the second parameter needs to be true so errors in html are hidden
             $evData['post_content'] = Html2Text::convert($event['post_content'], true);
             
             $rows[] = $evData;
