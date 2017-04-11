@@ -40,4 +40,24 @@ class Events{
         }
         return $rows;
     }
+
+    function getSingleByID($event_id){
+        $event = $this->db->ltdbsem_events("event_id", $event_id)->fetch();
+
+        $evData = $event;
+
+        $evData['event_name'] = html_entity_decode($event['event_name']);
+
+        // Add the location data to the array
+        $evData['location'] = $locations->getLocation($event['location_id']);
+
+        // Add the attached image to the array
+        $evData['image_url'] = $images->getImageForEvent($event['post_id']);
+        
+        // Convert the html content into text
+        //    NOTE: the second parameter needs to be true so errors in html are hidden
+        $evData['post_content'] = Html2Text::convert($event['post_content'], true);
+                
+        return $evData;
+    }
 }
