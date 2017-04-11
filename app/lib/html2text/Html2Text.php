@@ -204,7 +204,7 @@ class Html2Text {
 				if ($prevName != null) {
 					$prefix = "\n";
 				}
-				return $prefix . "---------------------------------------------------------------\n";
+				return $prefix . "---------------------------\n";
 
 			case "style":
 			case "head":
