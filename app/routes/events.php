@@ -12,3 +12,11 @@ $app->get('/events/{date}', function (Request $request, Response $response, $arg
 
     return $newResponse;
 });
+
+$app->get('/event_debug/{event_id}', function (Request $request, Response $response, $args) {
+    $events = new Events($this->db, $this->logger);
+    $ev = $events->getSingleByID($args['event_id']);
+    $newResponse = $response->getBody()->write($ev['post_content']);
+
+    return $newResponse;
+});
