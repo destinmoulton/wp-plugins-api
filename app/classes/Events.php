@@ -42,6 +42,8 @@ class Events{
     }
 
     function getSingleByID($event_id){
+        $locations = new Locations($this->db, $this->logger);
+        $images = new Images($this->db, $this->logger);
         $event = $this->db->ltdbsem_events("event_id", $event_id)->fetch();
 
         $evData = $event;
