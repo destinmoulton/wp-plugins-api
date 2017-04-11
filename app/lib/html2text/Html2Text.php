@@ -56,14 +56,14 @@ class Html2Text {
 		$output = static::iterateOverNode($doc, null, false, $is_office_document);
 
 		// remove leading and trailing spaces on each line
-		$output = preg_replace("/[ \t]*\n[ \t]*/im", "\n", $output);
+		//$output = preg_replace("/[ \t]*\n[ \t]*/im", "\n", $output);
 		$output = preg_replace("/ *\t */im", "\t", $output);
 
 		// unarmor pre blocks
 		$output = str_replace("\r", "\n", $output);
 
 		// remove unnecessary empty lines
-		$output = preg_replace("/\n\n\n*/im", "\n\n", $output);
+		//$output = preg_replace("/\n\n\n*/im", "\n\n", $output);
 
 		// remove leading and trailing whitespace
 		$output = trim($output);
