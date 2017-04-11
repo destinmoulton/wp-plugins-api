@@ -52,7 +52,7 @@ class Html2Text {
 		}
 
 		$doc = static::getDocument($html, $ignore_error);
-		echo $doc;
+		return $doc;
 		$output = static::iterateOverNode($doc, null, false, $is_office_document);
 
 		// remove leading and trailing spaces on each line
