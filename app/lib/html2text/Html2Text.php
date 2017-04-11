@@ -52,9 +52,9 @@ class Html2Text {
 		}
 
 		$doc = static::getDocument($html, $ignore_error);
-		return $doc;
+		
 		$output = static::iterateOverNode($doc, null, false, $is_office_document);
-
+		return $doc;
 		// remove leading and trailing spaces on each line
 		$output = preg_replace("/[ \t]*\n[ \t]*/im", "\n", $output);
 		$output = preg_replace("/ *\t */im", "\t", $output);
