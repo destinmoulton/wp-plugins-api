@@ -26,6 +26,8 @@ class Events{
 
             $evData['event_name'] = html_entity_decode($event['event_name']);
 
+            $evData['event_attributes'] = unserialize($event['event_attributes']);
+
             // Add the location data to the array
             $evData['location'] = $locations->getLocation($event['location_id']);
 
@@ -49,6 +51,8 @@ class Events{
         $evData = $event;
 
         $evData['event_name'] = html_entity_decode($event['event_name']);
+
+        $evData['event_attributes'] = unserialize($event['event_attributes']);
 
         // Add the location data to the array
         $evData['location'] = $locations->getLocation($event['location_id']);
