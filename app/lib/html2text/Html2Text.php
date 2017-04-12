@@ -49,7 +49,7 @@ class Html2Text {
 		$html = static::fixNewlines($html);
 
 		$html = static::replaceNewLinesWithBR($html);
-
+		return $html;
 		if (mb_detect_encoding($html, "UTF-8", true)) {
 			$html = mb_convert_encoding($html, "HTML-ENTITIES", "UTF-8");
 		}
