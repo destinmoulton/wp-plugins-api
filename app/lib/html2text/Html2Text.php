@@ -75,6 +75,7 @@ class Html2Text {
 
 	/**
 	 * Replace all the newlines with BR so they are not lost.
+	 * @author Destin Moulton
 	 * @param string $text The text with \n's
 	 * @return string The br'd text.
 	 */
@@ -323,50 +324,6 @@ class Html2Text {
 
 			case "a":
 				$output = trim($output);
-				/**
-				 * Modified by: Destin Moulton
-				 * Removed because we don't want links
-				// links are returned in [text](link) format
-				$href = $node->getAttribute("href");
-
-				$output = trim($output);
-				
-				
-				// remove double [[ ]] s from linking images
-				if (substr($output, 0, 1) == "[" && substr($output, -1) == "]") {
-					$output = substr($output, 1, strlen($output) - 2);
-
-					// for linking images, the title of the <a> overrides the title of the <img>
-					if ($node->getAttribute("title")) {
-						$output = $node->getAttribute("title");
-					}
-				}
-
-				// if there is no link text, but a title attr
-				if (!$output && $node->getAttribute("title")) {
-					$output = $node->getAttribute("title");
-				}
-
-				if ($href == null) {
-					// it doesn't link anywhere
-					if ($node->getAttribute("name") != null) {
-						$output = "[$output]";
-					}
-				} else {
-					if ($href == $output || $href == "mailto:$output" || $href == "http://$output" || $href == "https://$output") {
-						// link to the same address: just use link
-						$output;
-					} else {
-						// replace it
-						if ($output) {
-							$output = "[$output]($href)";
-						} else {
-							// empty string
-							$output = $href;
-						}
-					}
-				}
-				**/
 
 				// does the next node require additional whitespace?
 				switch ($nextName) {
@@ -378,18 +335,6 @@ class Html2Text {
 
 			case "img":
 				$output = "";
-				/**
-				 * @modified: Destin Moulton
-				 * Don't include image information.
-				 *
-				if ($node->getAttribute("title")) {
-					$output = "[" . $node->getAttribute("title") . "]";
-				} elseif ($node->getAttribute("alt")) {
-					$output = "[" . $node->getAttribute("alt") . "]";
-				} else {
-					$output = "";
-				}
-				*/
 
 				break;
 
