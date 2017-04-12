@@ -46,8 +46,7 @@ class Html2Text {
 			$html = str_replace(array("<o:p>", "</o:p>"), "", $html);
 		}
 
-		$html = static::fixNewlines($html);
-
+		// Seems silly right? Replacing new line with BR, but the newlines are stripped otherwise.
 		$html = static::replaceNewLinesWithBR($html);
 		
 		if (mb_detect_encoding($html, "UTF-8", true)) {
@@ -80,6 +79,8 @@ class Html2Text {
 	 * @return string The br'd text.
 	 */
 	static function replaceNewLinesWithBR($text){
+		$text = str_replace("\r\n", "<br>", $text);
+		$text = str_replace("\r", "<br>", $text);
 		$text = str_replace("\n", "<br>", $text);
 
 		return $text;
