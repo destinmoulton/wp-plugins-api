@@ -244,8 +244,7 @@ class Html2Text {
 					break;
 				}
 				// add two lines
-				//$output = "\n\n";
-				$output = "!!!PARAGRAPH_BEGIN!!!";
+				$output = "\n\n";
 				break;
 
 			case "pre":
