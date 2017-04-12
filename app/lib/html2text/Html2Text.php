@@ -87,23 +87,6 @@ class Html2Text {
 	}
 
 	/**
-	 * Unify newlines; in particular, \r\n becomes \n, and
-	 * then \r becomes \n. This means that all newlines (Unix, Windows, Mac)
-	 * all become \ns.
-	 *
-	 * @param string $text text with any number of \r, \r\n and \n combinations
-	 * @return string the fixed text
-	 */
-	static function fixNewlines($text) {
-		// replace \r\n to \n
-		$text = str_replace("\r\n", "\n", $text);
-		// remove \rs
-		$text = str_replace("\r", "\n", $text);
-
-		return $text;
-	}
-
-	/**
 	 * Parse HTML into a DOMDocument
 	 *
 	 * @param string $html the input HTML
