@@ -48,6 +48,8 @@ class Html2Text {
 
 		$html = static::fixNewlines($html);
 
+		$html = static::replaceNewLinesWithBR($html);
+
 		if (mb_detect_encoding($html, "UTF-8", true)) {
 			$html = mb_convert_encoding($html, "HTML-ENTITIES", "UTF-8");
 		}
@@ -74,6 +76,8 @@ class Html2Text {
 
 	/**
 	 * Replace all the newlines with BR so they are not lost.
+	 * @param string $text The text with \n's
+	 * @return string The br'd text.
 	 */
 	static function replaceNewLinesWithBR($text){
 		$text = str_replace("\n", "<br>", $text);
