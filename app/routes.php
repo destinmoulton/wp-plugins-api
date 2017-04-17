@@ -1,4 +1,11 @@
 <?php
+/**
+ * Slim routes are stored in a 'routes.php' file inside each plugin
+ * in the plugins/ directory.
+ *
+ * @author Destin Moulton
+ *
+ */
 $PLUGIN_DIR = realpath(__DIR__ . '/../plugins/');
 
 $plugin_directories = glob($PLUGIN_DIR . '/*' , GLOB_ONLYDIR);
