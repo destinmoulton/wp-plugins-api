@@ -1,3 +1,8 @@
 <?php
+$PLUGIN_DIR = __DIR__ . '/plugins/';
 
-require('routes/events.php');
+$plugin_directories = glob($PLUGIN_DIR . '/*' , GLOB_ONLYDIR);
+
+foreach( $plugin_directories as $dir){
+    require($PLUGIN_DIR . $dir . '/routes.php');
+}
