@@ -1,10 +1,17 @@
-### Events Manager Rest API
-A REST API to access Events Manager data.
+### Wordpress Plugin Rest APIs
+Contains two rest API's for interacting with the Events Manager and the OIO Ad Manager plugins.
+
+Built using the [Slim Framework](https://www.slimframework.com/) and [NotORM](http://www.notorm.com/).
 
 ### Features
-Provides REST endpoints to perform event queries. Data is presented as JSON.
+Provides REST endpoints to interact with wordpress plugins via JSON.
 
 This API does not allow the creation/submission of events.
+
+
+### Creating Your Own Plugins
+You can create your own plugins and add them to the plugins/ folder. The only requirement is a 'routes.php' file. This will determine the accessible API URLs/endpoints.
+
 
 ### Configuration
 Rename or copy `app/config.template.php` to `app/config.php`. Alter the database configuration values to match your Wordpress installation.
