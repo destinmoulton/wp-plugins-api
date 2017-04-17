@@ -1,5 +1,7 @@
 ### Wordpress Plugin Rest APIs
-Contains two rest API's for interacting with the Events Manager and the OIO Ad Manager plugins.
+Contains two rest API's:
+1. Events Manager 
+2. OIO Ad Manager
 
 Built using the [Slim Framework](https://www.slimframework.com/) and [NotORM](http://www.notorm.com/).
 
