@@ -59,6 +59,6 @@ $container["JwtAuthentication"] = function ($container) {
 
 $app->add("JwtAuthentication");
 
-require('routes.php');
+require(__DIR__ . '/routes/routes.php');
 
 $app->run();

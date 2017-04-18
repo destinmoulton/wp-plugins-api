@@ -8,7 +8,7 @@
  * @author Destin Moulton
  *
  */
-$PLUGIN_DIR = realpath(__DIR__ . '/../plugins/');
+$PLUGIN_DIR = realpath(__DIR__ . '/../../plugins/');
 
 $plugin_directories = glob($PLUGIN_DIR . '/*' , GLOB_ONLYDIR);
 

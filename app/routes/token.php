@@ -5,6 +5,9 @@
  * Modified From: 
  *    https://github.com/tuupola/slim-api-skeleton/blob/master/routes/token.php
  */
+use Firebase\JWT\JWT;
+use Tuupola\Base62;
+
 $app->post("/token", function ($request, $response, $arguments) {
    
     $now = new DateTime();
