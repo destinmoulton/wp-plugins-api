@@ -10,6 +10,8 @@ require 'lib/NotORM.php';
 
 require 'Token.php';
 
+use Slim\Middleware\JwtAuthentication;
+
 $container = $app->getContainer();
 
 $container['logger'] = function($container) {
@@ -41,7 +43,7 @@ $container["JwtAuthentication"] = function ($container) {
         "passthrough" => ["/token"],
         "secret" => $container['settings']['jwt']['secret'],
         "logger" => $container["logger"],
-        "relaxed" => ["192.168.50.52"],
+        "relaxed" => ["localhost"],
         "error" => function ($request, $response, $arguments) {
             $data["status"] = "error";
             $data["message"] = $arguments["message"];
