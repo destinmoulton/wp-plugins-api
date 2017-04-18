@@ -26,6 +26,12 @@ $config['db']['dbname'] = "wordpress_database";
 $config['db']['charset'] = "utf8";
 ```
 
+Also, set the JWT authentication secret.
+```php
+// JWT Authentication Secret
+$config['jwt']['secret'] = "setThisToSomethingSuperSecret";
+```
+
 It is highly recommended that the database user be given **READ ONLY** access to the Wordpress database.
 
 ### NotORM
