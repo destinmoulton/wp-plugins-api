@@ -1,7 +1,9 @@
 <?php
 /**
  * Slim routes are stored in a 'routes.php' file inside each plugin
- * in the plugins/ directory.
+ * in the ../plugins/ directory.
+ *
+ * ie. ../plugins/events-manager/routes.php
  *
  * @author Destin Moulton
  *
