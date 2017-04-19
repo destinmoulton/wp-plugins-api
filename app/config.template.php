@@ -11,5 +11,6 @@ $config['db']['pass']   = "password";
 $config['db']['dbname'] = "wordpress_database";
 $config['db']['charset'] = "utf8";
 
-// JWT Authentication Secret
+// JWT Authentication
+$config['jwt']['auth_id'] = "clientSendsThisAsVerification";
 $config['jwt']['secret'] = "setThisToSomethingSuperSecret";

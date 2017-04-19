@@ -9,7 +9,19 @@ use Firebase\JWT\JWT;
 use Tuupola\Base62;
 
 $app->post("/token", function ($request, $response, $arguments) {
-   
+    
+    $json = $request->getBody();
+    $data = json_decode($json, true);
+    
+    if(!isset($data['auth_id'])){
+        return $response->withStatus(401);
+    }
+
+    $settings = $this->get('settings');
+    
+    if($data['auth_id'] !== $settings['jwt']['auth_id']){
+        return $response->withStatus(401);
+    }
     $now = new DateTime();
     $future = new DateTime("now +2 years");
     $server = $request->getServerParams();
@@ -20,7 +32,7 @@ $app->post("/token", function ($request, $response, $arguments) {
         "jti" => $jti,
         "sub" => $server["PHP_AUTH_USER"]
     ];
-    $secret = getenv("JWT_SECRET");
+    $secret = $config['jwt']['secret'];
     $token = JWT::encode($payload, $secret, "HS256");
     $data["token"] = $token;
     $data["expires"] = $future->getTimeStamp();
