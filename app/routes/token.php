@@ -24,13 +24,13 @@ $app->post("/token", function ($request, $response, $arguments) {
     }
     $now = new DateTime();
     $future = new DateTime("now +2 years");
-    $server = $request->getServerParams();
+    $php_auth_user = $request->getServerParam("PHP_AUTH_USER", "unknown");
     $jti = (new Base62)->encode(random_bytes(16));
     $payload = [
         "iat" => $now->getTimeStamp(),
         "exp" => $future->getTimeStamp(),
         "jti" => $jti,
-        "sub" => $server["PHP_AUTH_USER"]
+        "sub" => $php_auth_user
     ];
     $secret = $settings['jwt']['secret'];
     $token = JWT::encode($payload, $secret, "HS256");
