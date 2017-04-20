@@ -32,7 +32,7 @@ $app->post("/token", function ($request, $response, $arguments) {
         "jti" => $jti,
         "sub" => $server["PHP_AUTH_USER"]
     ];
-    $secret = $config['jwt']['secret'];
+    $secret = $settings['jwt']['secret'];
     $token = JWT::encode($payload, $secret, "HS256");
     $data["token"] = $token;
     $data["expires"] = $future->getTimeStamp();
