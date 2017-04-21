@@ -36,6 +36,7 @@ $app->post("/token", function ($request, $response, $arguments) {
     $secret = $settings["jwt"]["secret"];
     $token = JWT::encode($payload, $secret, "HS256");
 
+    $json = array();
     $json["status"] = "success";
     $json["token"] = $token;
     $json["expires"] = $future->getTimeStamp();
