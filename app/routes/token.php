@@ -13,13 +13,13 @@ $app->post("/token", function ($request, $response, $arguments) {
     $json = $request->getBody();
     $data = json_decode($json, true);
     
-    if(!isset($data['auth_id'])){
+    if(!isset($data["auth_id"])){
         return $response->withStatus(401);
     }
 
-    $settings = $this->get('settings');
+    $settings = $this->get("settings");
     
-    if($data['auth_id'] !== $settings['jwt']['auth_id']){
+    if($data["auth_id"] !== $settings["jwt"]["auth_id"]){
         return $response->withStatus(401);
     }
 
@@ -33,9 +33,10 @@ $app->post("/token", function ($request, $response, $arguments) {
         "jti" => $jti,
         "sub" => $php_auth_user
     ];
-    $secret = $settings['jwt']['secret'];
+    $secret = $settings["jwt"]["secret"];
     $token = JWT::encode($payload, $secret, "HS256");
 
+    $json["status"] = "success";
     $json["token"] = $token;
     $json["expires"] = $future->getTimeStamp();
     return $response->withStatus(201)
