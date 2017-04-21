@@ -52,12 +52,24 @@ $container["JwtAuthentication"] = function ($container) {
                 ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         },
         "callback" => function ($request, $response, $arguments) use ($container) {
+
             $container["token"]->hydrate($arguments["decoded"]);
         }
     ]);
 };
-
 $app->add("JwtAuthentication");
+
+// Allow localhost access to the api
+$cors_whitelist = array('127.0.0.1','localhost');
+
+if(in_array($_SERVER['REMOTE_ADDR'], $cors_whitelist)){
+    $app->add(function ($request, $response, $next) {
+        $response->withHeader('Access-Control-Allow-Origin', '*');
+        $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        $response->withHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
+        return $next($request, $response);
+    });
+}
 
 require(__DIR__ . '/routes/routes.php');
 
