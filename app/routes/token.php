@@ -22,6 +22,7 @@ $app->post("/token", function ($request, $response, $arguments) {
     if($data['auth_id'] !== $settings['jwt']['auth_id']){
         return $response->withStatus(401);
     }
+
     $now = new DateTime();
     $future = new DateTime("now +2 years");
     $php_auth_user = $request->getServerParam("PHP_AUTH_USER", "unknown");
@@ -34,9 +35,10 @@ $app->post("/token", function ($request, $response, $arguments) {
     ];
     $secret = $settings['jwt']['secret'];
     $token = JWT::encode($payload, $secret, "HS256");
-    $data["token"] = $token;
-    $data["expires"] = $future->getTimeStamp();
+
+    $json["token"] = $token;
+    $json["expires"] = $future->getTimeStamp();
     return $response->withStatus(201)
         ->withHeader("Content-Type", "application/json")
-        ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+        ->write(json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 });
