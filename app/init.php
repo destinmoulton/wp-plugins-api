@@ -59,18 +59,6 @@ $container["JwtAuthentication"] = function ($container) {
 };
 $app->add("JwtAuthentication");
 
-// Allow localhost access to the api
-$cors_whitelist = array('127.0.0.1','localhost');
-
-if(in_array($_SERVER['REMOTE_ADDR'], $cors_whitelist)){
-    $app->add(function ($request, $response, $next) {
-        $response->withHeader('Access-Control-Allow-Origin', '*');
-        $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-        $response->withHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
-        return $next($request, $response);
-    });
-}
-
 require(__DIR__ . '/routes/routes.php');
 
 $app->run();
