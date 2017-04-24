@@ -14,8 +14,8 @@ class Events{
     }
 
     function getForDate($date){
-        $locations = new Locations($this->db, $this->logger);
-        $images = new Images($this->db, $this->logger);
+        $locations = new Locations($this->db, $this->logger, $this->settings);
+        $images = new Images($this->db, $this->logger, $this->settings);
 
         $select = $this->db->select()
                             ->from($this->settings['db']['prefix'] . self::EVENTS_TABLE)
@@ -25,7 +25,8 @@ class Events{
                             ->orderBy("event_start_date", "ASC")
                             ->orderBy("event_start_time", "ASC");
         $stmt = $select->execute();
-        $data = $stmt->fetch();
+        $stmt->debugDumpParams();
+        $events = $stmt->fetchAll();
 
         $rows = [];
         foreach ($events as $event){
