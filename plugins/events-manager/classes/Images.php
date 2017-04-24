@@ -1,9 +1,10 @@
 <?php
 
 class Images {
-    function __construct($db, $logger){
+    function __construct($db, $logger, $settings){
         $this->db = $db;
         $this->logger = $logger;
+        $this->settings = $settings;
     }
 
     function getImageForEvent($post_id){
