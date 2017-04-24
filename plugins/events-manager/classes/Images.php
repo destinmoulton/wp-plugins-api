@@ -1,6 +1,9 @@
 <?php
 
 class Images {
+    const META_TABLE = "postmeta";
+    const POSTS_TABLE = "posts";
+
     function __construct($db, $logger, $settings){
         $this->db = $db;
         $this->logger = $logger;
@@ -9,19 +12,24 @@ class Images {
 
     function getImageForEvent($post_id){
         // Get the thumbnail post_id from postmeta
-        $meta = $this->db->ltdbspostmeta()
-                         ->where("post_id", $post_id)
-                         ->where("meta_key", "_thumbnail_id")
-                         ->limit(1);
-        if(!isset($meta[0])){
+        $select = $this->db->select()
+                         ->from($this->settings['db']['prefix'] . self::META_TABLE)
+                         ->where("post_id", "=", $post_id)
+                         ->where("meta_key", "=", "_thumbnail_id");
+
+        $stmt = $select->execute();
+        $image = $stmt->fetch();
+        if(!isset($image['meta_value'])){
             return "";
         }
 
         // Get the post with the thumbnail info
-        $post = $this->db->ltdbsposts()
-                              ->where("ID", $meta[0]['meta_value'])
-                              ->limit(1);
+        $select = $this->db->select()
+                           ->from($this->settings['db']['prefix'] . self::POSTS_TABLE)
+                           ->where("ID", "=", $image['meta_value']);
+        $stmt = $select->execute();
+        $post = $stmt->fetch();
 
-        return (isset($post[0]))? $post[0]['guid'] : "";
+        return (isset($post['guid']))? $post['guid'] : "";
     }
 }
