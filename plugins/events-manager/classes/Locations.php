@@ -1,17 +1,23 @@
 <?php
 
 class Locations {
+    const EVENT_LOCATIONS_TABLE = "em_locations";
+
     function __construct($db, $logger, $settings){
         $this->db = $db;
         $this->logger = $logger;
         $this->settings = $settings;
-        
+
         $this->locations = [];
     }
 
     function getCacheLocations(){
-        $locations = $this->db->ltdbsem_locations()
+        $locations = $this->db->select()
+                              ->from($this->settings['db']['prefix'] . self::EVENT_LOCATIONS_TABLE)
                               ->order("location_id ASC");
+
+        $stmt = $select->execute();
+        $locations = $stmt->fetchAll();
 
         $rows = [];
         foreach ($locations as $loc){
