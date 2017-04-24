@@ -10,6 +10,7 @@ $config['db']['user']   = "username";
 $config['db']['pass']   = "password";
 $config['db']['dbname'] = "wordpress_database";
 $config['db']['charset'] = "utf8";
+$config['db']['prefix'] = "";
 
 // JWT Authentication
 $config['jwt']['auth_id'] = "clientSendsThisAsVerification";
