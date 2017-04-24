@@ -5,20 +5,27 @@ require('Locations.php');
 require('Images.php');
 
 class Events{
-    function __construct($db, $logger){
+    const EVENTS_TABLE = "em_events";
+
+    function __construct($db, $logger, $settings){
         $this->db = $db;
         $this->logger = $logger;
-
+        $this->settings = $settings;
     }
 
     function getForDate($date){
         $locations = new Locations($this->db, $this->logger);
         $images = new Images($this->db, $this->logger);
 
-        $events = $this->db->ltdbsem_events()
-                            ->where("event_start_date = ? AND event_status = 1 AND recurrence = 0", $date)
-                            ->order("event_start_date ASC, event_start_time ASC")
-                            ->limit(30);
+        $select = $this->db->select()
+                            ->from($this->settings['db']['prefix'] . self::EVENTS_TABLE)
+                            ->where("event_start_date", "=", $date)
+                            ->where("event_status", "=", 1)
+                            ->where("recurrence", "=", 0)
+                            ->orderBy("event_start_date", "ASC")
+                            ->orderBy("event_start_time", "ASC");
+        $stmt = $select->execute();
+        $data = $stmt->fetch();
 
         $rows = [];
         foreach ($events as $event){
