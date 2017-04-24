@@ -25,7 +25,6 @@ class Events{
                             ->orderBy("event_start_date", "ASC")
                             ->orderBy("event_start_time", "ASC");
         $stmt = $select->execute();
-        $stmt->debugDumpParams();
         $events = $stmt->fetchAll();
 
         $rows = [];
