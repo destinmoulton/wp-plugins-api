@@ -5,9 +5,6 @@ require '../vendor/autoload.php';
 require 'config.php';
 $app = new \Slim\App(["settings" => $config]);
 
-// Use NotORM for the database 
-require 'lib/NotORM.php';
-
 require 'Token.php';
 
 use Slim\Middleware\JwtAuthentication;
@@ -23,7 +20,7 @@ $container['logger'] = function($container) {
 
 $container['db'] = function ($container) {
     $db_settings = $container['settings']['db'];
-    
+
     $dsn = "mysql:host=" .  $db_settings['host'] . ";dbname=" .  $db_settings['dbname'] . ";charset=" .  $db_settings['charset'];
     
     $pdo = new \Slim\PDO\Database($dsn, $db_settings['user'], $db_settings['pass']);
