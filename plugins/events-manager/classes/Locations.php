@@ -14,7 +14,7 @@ class Locations {
     function getCacheLocations(){
         $locations = $this->db->select()
                               ->from($this->settings['db']['prefix'] . self::EVENT_LOCATIONS_TABLE)
-                              ->order("location_id ASC");
+                              ->orderBy("location_id", "ASC");
 
         $stmt = $select->execute();
         $locations = $stmt->fetchAll();
