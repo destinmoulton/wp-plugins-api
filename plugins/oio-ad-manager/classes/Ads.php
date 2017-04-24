@@ -6,6 +6,11 @@
  */
 
 class Ads {
+    function __construct($db, $logger){
+        $this->db = $db;
+        $this->logger = $logger;
+    }
+
     function getAdsByType($adType){
         //The types of ads
         $types = array( 'link' => 2, 'inline' => 3, 'banner' => 5 );
