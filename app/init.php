@@ -22,13 +22,14 @@ $container['logger'] = function($container) {
 };
 
 $container['db'] = function ($container) {
-    $db = $container['settings']['db'];
-    $pdo = new PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['dbname'],
-        $db['user'], $db['pass'],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '" . $db['charset'] . "'"));
+    $db_settings = $container['settings']['db'];
+    
+    $dsn = "mysql:host=" .  $db_settings['host'] . ";dbname=" .  $db_settings['dbname'] . ";charset=" .  $db_settings['charset'];
+    
+    $pdo = new \Slim\PDO\Database($dsn, $db_settings['user'], $db_settings['pass']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $db = new NotORM($pdo);
-    return $db;
+    return $pdo;
 };
 
 $container["token"] = function ($container) {
