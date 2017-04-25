@@ -32,10 +32,18 @@ class Ads {
         return $stmt->fetchAll();
     }
 
-    function hasAlreadyClicked($pid, $client_ip){
-        $date_now = date('Y-m-d', $time_now);
+    function logClick($pid, $referer){
         $time_now = time();
-        $allowed_time_difference = $time_now - self::DUPLICATE_CLICK_TIME_LIMIT;
+        
+        $client_ip = $_SERVER['REMOTE_ADDR'];
+
+        if(!$this->hasAlreadyClicked($pid, $client_ip, $time_now)){
+
+        }
+    }
+
+    function hasAlreadyClicked($pid, $client_ip, $time){
+        $allowed_time_difference = $time - self::DUPLICATE_CLICK_TIME_LIMIT;
 
         $select = $this->db->select()
                            ->from($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_CLICKS)
