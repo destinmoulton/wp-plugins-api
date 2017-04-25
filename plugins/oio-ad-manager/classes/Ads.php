@@ -42,6 +42,12 @@ class Ads {
         }
     }
 
+    function insertClick($pid, $client_ip, $referer, $time){
+        $date_now = date('Y-m-d', $time);
+
+        
+    }
+
     function hasAlreadyClicked($pid, $client_ip, $time){
         $allowed_time_difference = $time - self::DUPLICATE_CLICK_TIME_LIMIT;
 
