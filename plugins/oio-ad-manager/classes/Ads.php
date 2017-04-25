@@ -67,6 +67,7 @@ class Ads {
         $insert = $this->db->insert($columns)
                            ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_VISITS)
                            ->values($values);
+                           
         return is_int($insert->execute(false));
     }
 
@@ -79,6 +80,7 @@ class Ads {
         $insert = $this->db->insert($columns)
                            ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_CLICKS)
                            ->values($values);
+
         return is_int($insert->execute(false));
     }
 
