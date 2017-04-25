@@ -17,7 +17,7 @@ class Ads {
         $this->settings = $settings;
     }
 
-    function _getClientIPAsLong(){
+    private function _getClientIPAsLong(){
         return ip2long($_SERVER['REMOTE_ADDR']);
     }
 
