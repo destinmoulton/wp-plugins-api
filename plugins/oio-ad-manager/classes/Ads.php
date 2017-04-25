@@ -34,7 +34,7 @@ class Ads {
     }
 
     public function logImpression($pid, $referer){
-
+        $this->_insertImpression($pid, $referer);
     }
 
     public function logClick($pid, $referer){
@@ -53,6 +53,21 @@ class Ads {
 
     private function _getClientAgent(){
         return $_SERVER['HTTP_USER_AGENT'];
+    }
+
+    private function _insertImpression($pid, $referer){
+        $pid_sep = "0|" . $pid;
+        $time = time();
+        $date = date('Y-m-d', $time);
+        $client_ip = $this->_getClientIPAsLong();
+        $agent = $this->_getClientAgent();
+
+        $columns = array('pids','time','date','ip','agent','referer');
+        $values = array($pid_sep, $time, $date, $client_ip, $agent, $referer);
+        $insert = $this->db->insert($columns)
+                           ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_VISITS)
+                           ->values($values);
+        return is_int($insert->execute(false));
     }
 
     private function _insertClick($pid, $client_ip, $referer, $time){
