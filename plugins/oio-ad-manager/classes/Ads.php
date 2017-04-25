@@ -32,6 +32,10 @@ class Ads {
         return $stmt->fetchAll();
     }
 
+    function logImpression($pid, $referer){
+
+    }
+
     function logClick($pid, $referer){
         $time_now = time();
         
@@ -45,7 +49,7 @@ class Ads {
     function insertClick($pid, $client_ip, $referer, $time){
         $date = date('Y-m-d', $time);
         $agent = $_SERVER['HTTP_USER_AGENT'];
-        
+
         $columns = array('pid','time','date','ip','agent','referer');
         $values = array($pid, $time, $date, $client_ip, $agent, $referer);
         $insert = $this->db->insert($columns)
