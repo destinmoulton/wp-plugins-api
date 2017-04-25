@@ -7,6 +7,8 @@
 
 class Ads {
     const OIO_TABLE_PURCHASES = "oiopub_purchases";
+    const OIO_TABLE_TRACKER_CLICKS = "oiopub_tracker_clicks";
+    const OIO_TABLE_TRACKER_VISITS = "oiopub_tracker_visits";
 
     function __construct($db, $logger, $settings){
         $this->db = $db;
@@ -30,6 +32,6 @@ class Ads {
     }
 
     function checkIfClicked($purchase_id, $ip){
-
+        
     }
 }
