@@ -45,7 +45,7 @@ class Ads {
         
         $client_ip = $this->_getClientIPAsLong();
 
-        if(!$this->hasAlreadyClicked($pid, $client_ip, $time_now)){
+        if(!$this->_hasAlreadyClicked($pid, $client_ip, $time_now)){
             $this->_insertClick($pid, $client_ip, $referer, $time_now);
         }
     }
@@ -62,7 +62,7 @@ class Ads {
         return is_int($insert->execute(false));
     }
 
-    function hasAlreadyClicked($pid, $client_ip, $time){
+    private function _hasAlreadyClicked($pid, $client_ip, $time){
         $allowed_time_difference = $time - self::DUPLICATE_CLICK_TIME_LIMIT;
 
         $select = $this->db->select()
