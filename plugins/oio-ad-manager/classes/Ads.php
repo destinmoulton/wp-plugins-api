@@ -17,7 +17,6 @@ class Ads {
         $this->settings = $settings;
     }
 
-    
 
     public function getAdsByType($adType){
         $types = array( 'link' => 2, 'inline' => 3, 'banner' => 5 );
@@ -52,9 +51,13 @@ class Ads {
         return ip2long($_SERVER['REMOTE_ADDR']);
     }
 
+    private function _getClientAgent(){
+        return $_SERVER['HTTP_USER_AGENT'];
+    }
+
     private function _insertClick($pid, $client_ip, $referer, $time){
         $date = date('Y-m-d', $time);
-        $agent = $_SERVER['HTTP_USER_AGENT'];
+        $agent = $this->_getClientAgent();
 
         $columns = array('pid','time','date','ip','agent','referer');
         $values = array($pid, $time, $date, $client_ip, $agent, $referer);
