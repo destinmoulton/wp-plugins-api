@@ -56,7 +56,10 @@ class Ads {
     }
 
     private function _insertImpression($pid, $referer){
+        // IOI stores multiple pids separated by |'s
+        //  -- A single pid is stored as 0|pid
         $pid_sep = "0|" . $pid;
+
         $time = time();
         $date = date('Y-m-d', $time);
         $client_ip = $this->_getClientIPAsLong();
@@ -67,7 +70,7 @@ class Ads {
         $insert = $this->db->insert($columns)
                            ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_VISITS)
                            ->values($values);
-                           
+
         return is_int($insert->execute(false));
     }
 
