@@ -46,11 +46,11 @@ class Ads {
         $client_ip = $this->_getClientIPAsLong();
 
         if(!$this->hasAlreadyClicked($pid, $client_ip, $time_now)){
-            $this->insertClick($pid, $client_ip, $referer, $time_now);
+            $this->_insertClick($pid, $client_ip, $referer, $time_now);
         }
     }
 
-    function insertClick($pid, $client_ip, $referer, $time){
+    private function _insertClick($pid, $client_ip, $referer, $time){
         $date = date('Y-m-d', $time);
         $agent = $_SERVER['HTTP_USER_AGENT'];
 
