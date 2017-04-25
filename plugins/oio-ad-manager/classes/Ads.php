@@ -17,11 +17,9 @@ class Ads {
         $this->settings = $settings;
     }
 
-    private function _getClientIPAsLong(){
-        return ip2long($_SERVER['REMOTE_ADDR']);
-    }
+    
 
-    function getAdsByType($adType){
+    public function getAdsByType($adType){
         $types = array( 'link' => 2, 'inline' => 3, 'banner' => 5 );
 
         $select = $this->db->select()
@@ -36,11 +34,11 @@ class Ads {
         return $stmt->fetchAll();
     }
 
-    function logImpression($pid, $referer){
+    public function logImpression($pid, $referer){
 
     }
 
-    function logClick($pid, $referer){
+    public function logClick($pid, $referer){
         $time_now = time();
         
         $client_ip = $this->_getClientIPAsLong();
@@ -48,6 +46,10 @@ class Ads {
         if(!$this->_hasAlreadyClicked($pid, $client_ip, $time_now)){
             $this->_insertClick($pid, $client_ip, $referer, $time_now);
         }
+    }
+
+    private function _getClientIPAsLong(){
+        return ip2long($_SERVER['REMOTE_ADDR']);
     }
 
     private function _insertClick($pid, $client_ip, $referer, $time){
