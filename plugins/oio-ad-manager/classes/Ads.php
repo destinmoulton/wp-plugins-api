@@ -38,14 +38,20 @@ class Ads {
         $client_ip = $_SERVER['REMOTE_ADDR'];
 
         if(!$this->hasAlreadyClicked($pid, $client_ip, $time_now)){
-
+            $this->insertClick($pid, $client_ip, $referer, $time_now);
         }
     }
 
     function insertClick($pid, $client_ip, $referer, $time){
-        $date_now = date('Y-m-d', $time);
-
+        $date = date('Y-m-d', $time);
+        $agent = $_SERVER['HTTP_USER_AGENT'];
         
+        $columns = array('pid','time','date','ip','agent','referer');
+        $values = array($pid, $time, $date, $client_ip, $agent, $referer);
+        $insert = $this->db->insert($columns)
+                           ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_CLICKS)
+                           ->values($values);
+        return is_int($insert->execute(false));
     }
 
     function hasAlreadyClicked($pid, $client_ip, $time){
