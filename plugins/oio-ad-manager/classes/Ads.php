@@ -39,7 +39,7 @@ class Ads {
     function logClick($pid, $referer){
         $time_now = time();
         
-        $client_ip = $_SERVER['REMOTE_ADDR'];
+        $client_ip = ip2long($_SERVER['REMOTE_ADDR']);
 
         if(!$this->hasAlreadyClicked($pid, $client_ip, $time_now)){
             $this->insertClick($pid, $client_ip, $referer, $time_now);
