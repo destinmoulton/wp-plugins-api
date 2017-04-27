@@ -12,3 +12,11 @@ $app->get('/ads/{ad_type}', function (Request $request, Response $response, $arg
 
     return $newResponse;
 });
+
+$app->post('/ad/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+    $ads = new Ads($this->db, $this->logger, $this->get('settings'));
+    $adsArr = $ads->logClick($args['ad_id'], $args['referer']);
+    $newResponse = $response->withJson(['status'=>'success']);
+
+    return $newResponse;
+});
