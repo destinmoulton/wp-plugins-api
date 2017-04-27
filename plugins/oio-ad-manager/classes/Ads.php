@@ -34,7 +34,7 @@ class Ads {
     }
 
     public function logImpression($pid, $referer){
-        $this->_insertImpression($pid, $referer);
+        return $this->_insertImpression($pid, $referer);
     }
 
     public function logClick($pid, $referer){
@@ -43,8 +43,9 @@ class Ads {
         $client_ip = $this->_getClientIPAsLong();
 
         if(!$this->_hasAlreadyClicked($pid, $client_ip, $time_now)){
-            $this->_insertClick($pid, $client_ip, $referer, $time_now);
+            return $this->_insertClick($pid, $client_ip, $referer, $time_now);
         }
+        return true;
     }
 
     private function _getClientIPAsLong(){
