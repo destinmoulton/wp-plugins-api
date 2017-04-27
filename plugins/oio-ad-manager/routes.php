@@ -13,7 +13,7 @@ $app->get('/ads/{ad_type}', function (Request $request, Response $response, $arg
     return $newResponse;
 });
 
-$app->post('/ad/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+$app->get('/ad/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
     $adsArr = $ads->logClick($args['ad_id'], $args['referer']);
     $newResponse = $response->withJson(['status'=>'success']);
@@ -21,7 +21,7 @@ $app->post('/ad/click/{ad_id}/{referer}', function (Request $request, Response $
     return $newResponse;
 });
 
-$app->post('/ad/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+$app->get('/ad/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
     $adsArr = $ads->logImpression($args['ad_id'], $args['referer']);
     $newResponse = $response->withJson(['status'=>'success']);
