@@ -20,3 +20,11 @@ $app->post('/ad/click/{ad_id}/{referer}', function (Request $request, Response $
 
     return $newResponse;
 });
+
+$app->post('/ad/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+    $ads = new Ads($this->db, $this->logger, $this->get('settings'));
+    $adsArr = $ads->logImpression($args['ad_id'], $args['referer']);
+    $newResponse = $response->withJson(['status'=>'success']);
+
+    return $newResponse;
+});
