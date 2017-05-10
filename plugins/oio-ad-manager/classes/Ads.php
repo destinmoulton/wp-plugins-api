@@ -42,10 +42,15 @@ class Ads {
         
         $client_ip = $this->_getClientIPAsLong();
 
-        if(!$this->_hasAlreadyClicked($pid, $client_ip, $time_now)){
-            return $this->_insertClick($pid, $client_ip, $referer, $time_now);
+        if($this->_hasAlreadyClicked($pid, $client_ip, $time_now)){
+            return [true, "User already clicked ad with id = '$pid'"];
         }
-        return true;
+        
+        if($this->_insertClick($pid, $client_ip, $referer, $time_now)){
+            return [true, "Click for ad id = '$pid' logged."];
+        }
+
+        return [false, "Failed to log ad click."];
     }
 
     private function _getClientIPAsLong(){
@@ -84,8 +89,7 @@ class Ads {
         $insert = $this->db->insert($columns)
                            ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_CLICKS)
                            ->values($values);
-
-        return is_int($insert->execute(false));
+        return $insert->execute(false);
     }
 
     private function _hasAlreadyClicked($pid, $client_ip, $time){
