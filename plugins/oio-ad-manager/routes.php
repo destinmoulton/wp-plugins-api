@@ -13,7 +13,7 @@ $app->get('/ads/{ad_type}', function (Request $request, Response $response, $arg
     return $newResponse;
 });
 
-$app->get('/ad/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+$app->get('/ads/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
 
     $status = "success";
