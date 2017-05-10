@@ -1,13 +1,13 @@
 <?php
+use Slim\Middleware\JwtAuthentication;
+
 require '../vendor/autoload.php';
 
-
 require 'config.php';
-$app = new \Slim\App(["settings" => $config]);
 
 require 'Token.php';
 
-use Slim\Middleware\JwtAuthentication;
+$app = new \Slim\App(["settings" => $config]);
 
 $container = $app->getContainer();
 
