@@ -77,7 +77,7 @@ class Ads {
                            ->into($this->settings['db']['prefix'] . self::OIO_TABLE_TRACKER_VISITS)
                            ->values($values);
 
-        return is_int($insert->execute(false));
+        return $insert->execute(false);
     }
 
     private function _insertClick($pid, $client_ip, $referer, $time){
