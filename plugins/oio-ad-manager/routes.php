@@ -16,12 +16,9 @@ $app->get('/ads/{ad_type}', function (Request $request, Response $response, $arg
 $app->get('/ads/click/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
 
-    $status = "success";
-    $msg = "Click not logged.";
-    if($ads->logClick($args['ad_id'], $args['referer'])){
-        $msg = "Click logged.";
-    }
-    $newResponse = $response->withJson(['status'=>$status, 'message'=>$msg]);
+    $resp = $ads->logClick($args['ad_id'], $args['referer']);
+
+    $newResponse = $response->withJson(['status'=>$resp[0], 'message'=>$resp[1]]);
 
     return $newResponse;
 });
