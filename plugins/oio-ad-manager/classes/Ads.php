@@ -34,7 +34,10 @@ class Ads {
     }
 
     public function logImpression($pid, $referer){
-        return $this->_insertImpression($pid, $referer);
+        if($this->_insertImpression($pid, $referer)){
+            return [true, "Impression for ad id = '$pid' logged."];
+        }
+        return [false, "Failed to log ad impression."];
     }
 
     public function logClick($pid, $referer){
