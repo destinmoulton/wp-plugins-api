@@ -26,7 +26,7 @@ $app->get('/ads/click/{ad_id}/{referer}', function (Request $request, Response $
     return $newResponse;
 });
 
-$app->get('/ad/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
+$app->get('/ads/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
 
     $status = "success";
