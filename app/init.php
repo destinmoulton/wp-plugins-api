@@ -18,6 +18,8 @@ $container['logger'] = function($container) {
     return $logger;
 };
 
+// Use Slim-PDO for the database interaction
+// https://github.com/FaaPz/Slim-PDO
 $container['db'] = function ($container) {
     $db_settings = $container['settings']['db'];
 
