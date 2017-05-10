@@ -26,12 +26,9 @@ $app->get('/ads/click/{ad_id}/{referer}', function (Request $request, Response $
 $app->get('/ads/impression/{ad_id}/{referer}', function (Request $request, Response $response, $args) {
     $ads = new Ads($this->db, $this->logger, $this->get('settings'));
 
-    $status = "success";
-    $msg = "Impression not logged.";
-    if($ads->logImpression($args['ad_id'], $args['referer'])){
-        $msg = "Impression logged.";
-    }
-    $newResponse = $response->withJson(['status'=>$status, 'message'=>$msg]);
+    $resp = $ads->logImpression($args['ad_id'], $args['referer']);
+
+    $newResponse = $response->withJson(['status'=>$resp[0], 'message'=>$resp[1]]);
 
     return $newResponse;
 });
