@@ -38,6 +38,9 @@ class Images {
     }
 
     function getImageSize($imageURL){
+        if(!$imageURL){
+            return array('image_width'=>0, 'image_height'=>0);
+        }
         // Replace the site URL with the absolute path
         $image_path = str_replace($this->settings['wp']['url'], $this->settings['wp']['absolute_path'], $imageURL);
         $size = getimagesize($image_path);
