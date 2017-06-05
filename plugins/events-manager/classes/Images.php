@@ -32,4 +32,8 @@ class Images {
 
         return (isset($post['guid']))? $post['guid'] : "";
     }
+
+    function _getImageSize($post){
+
+    }
 }
