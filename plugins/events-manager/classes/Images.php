@@ -38,8 +38,8 @@ class Images {
         return array_merge($post, $image_size);
     }
 
-    function _getImageSize($post){
-        $size = getimagesize($post['guid']);
+    function _getImageSize($imageURL){
+        $size = getimagesize($imageURL);
         return array('image_width'=>$size[0], 'image_height'=>$size[1]);
     }
 }
