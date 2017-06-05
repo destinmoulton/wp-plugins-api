@@ -37,7 +37,7 @@ class Images {
         return $post['guid'];
     }
 
-    function _getImageSize($imageURL){
+    function getImageSize($imageURL){
         $size = getimagesize($imageURL);
         return array('image_width'=>$size[0], 'image_height'=>$size[1]);
     }
