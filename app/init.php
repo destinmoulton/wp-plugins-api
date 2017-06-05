@@ -14,9 +14,9 @@ $container = $app->getContainer();
 // Custom error handler
 $container['errorHandler'] = function ($container) {
     return function ($request, $response, $exception) use ($container) {
-        return $response->withStatus(500)
+        return $container['response']->withStatus(500)
                                      ->withHeader('Content-Type', 'text/html')
-                                     ->write($exception->getMessage());
+                                     ->write("Something went wrong!");
     };
 };
 
