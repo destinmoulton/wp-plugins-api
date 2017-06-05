@@ -14,10 +14,14 @@ $container = $app->getContainer();
 // Custom error handler
 $container['errorHandler'] = function ($container) {
     return function ($request, $response, $exception) use ($container) {
-        return $container['response']->withStatus(500)
+        return $response->withStatus(500)
                                      ->withHeader('Content-Type', 'text/html')
                                      ->write("Something went wrong!");
     };
+};
+
+$container['phpErrorHandler'] = function ($container) {
+    return $container['errorHandler'];
 };
 
 $container['logger'] = function($container) {
