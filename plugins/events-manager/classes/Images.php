@@ -30,10 +30,16 @@ class Images {
         $stmt = $select->execute();
         $post = $stmt->fetch();
 
-        return (isset($post['guid']))? $post['guid'] : "";
+        if(!isset($post['guid'])){
+            return "";
+        }
+
+        $image_size = $this->_getImageSize($post['guid']);
+        return array_merge($post, $image_size);
     }
 
     function _getImageSize($post){
-
+        $size = getimagesize($post['guid']);
+        return array('image_width'=>$size[0], 'image_height'=>$size[1]);
     }
 }
