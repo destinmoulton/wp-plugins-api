@@ -5,6 +5,7 @@
         "tuupola/slim-jwt-auth": "^2.3",
         "firebase/php-jwt": "^4.0",
         "tuupola/base62": "^0.8.0",
-        "slim/pdo": "^1.10"
+        "slim/pdo": "^1.10",
+        "paragonie/random_compat": "^2.0"
     }
 }
