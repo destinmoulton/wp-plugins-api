@@ -34,8 +34,7 @@ class Images {
             return "";
         }
 
-        $image_size = $this->_getImageSize($post['guid']);
-        return array_merge($post, $image_size);
+        return $post['guid'];
     }
 
     function _getImageSize($imageURL){
