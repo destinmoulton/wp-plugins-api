@@ -4,6 +4,10 @@
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
+// Wordpress Settings
+$config['wp']['url'] = "http://urltowp.com";
+$config['wp']['absolute_path'] = "/path/to/wp";
+
 // Wordpress Database connection credentials
 $config['db']['host']   = "localhost";
 $config['db']['user']   = "username";
