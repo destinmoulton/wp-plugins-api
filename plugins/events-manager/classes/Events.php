@@ -40,6 +40,9 @@ class Events{
 
             // Add the attached image to the array
             $evData['image_url'] = $images->getImageForEvent($event['post_id']);
+
+            // Get the image size info
+            $evData['image_size'] = $images->getImageSize($evData['image_url']);
             
             // Convert the html content into text
             //    NOTE: the second parameter needs to be true so errors in html are hidden
