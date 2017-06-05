@@ -11,28 +11,6 @@ $app = new \Slim\App(["settings" => $config]);
 
 $container = $app->getContainer();
 
-
-set_error_handler(function ($severity, $message, $file, $line) {
-    if (!(error_reporting() & $severity)) {
-        // This error code is not included in error_reporting, so ignore it
-        return;
-    }
-    throw new \ErrorException($message, 0, $severity, $file, $line);
-});
-
-// Custom error handler
-$container['errorHandler'] = function ($container) {
-    return function ($request, $response, $exception) use ($container) {
-        return $response->withStatus(500)
-                                     ->withHeader('Content-Type', 'text/html')
-                                     ->write("Something went wrong!");
-    };
-};
-
-$container['phpErrorHandler'] = function ($container) {
-    return $container['errorHandler'];
-};
-
 $container['logger'] = function($container) {
     $logger = new \Monolog\Logger('api_logger');
     $file_handler = new \Monolog\Handler\StreamHandler("../logs/app.log");
