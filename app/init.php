@@ -11,6 +11,11 @@ $app = new \Slim\App(["settings" => $config]);
 
 $container = $app->getContainer();
 
+// Custom error handler
+$app->error(function (\Exception $e) use ($app) {
+    $app->render('error.php', array('error'=>$e->getMessage()));
+});
+
 $container['logger'] = function($container) {
     $logger = new \Monolog\Logger('api_logger');
     $file_handler = new \Monolog\Handler\StreamHandler("../logs/app.log");
