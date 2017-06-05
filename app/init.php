@@ -12,9 +12,13 @@ $app = new \Slim\App(["settings" => $config]);
 $container = $app->getContainer();
 
 // Custom error handler
-$app->error(function (\Exception $e) use ($app) {
-    $app->render('error.php', array('error'=>$e->getMessage()));
-});
+$container['errorHandler'] = function ($container) {
+    return function ($request, $response, $exception) use ($container) {
+        return $container['response']->withStatus(500)
+                                     ->withHeader('Content-Type', 'text/html')
+                                      ->write($exception->getMessage());
+    };
+};
 
 $container['logger'] = function($container) {
     $logger = new \Monolog\Logger('api_logger');
