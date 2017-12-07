@@ -35,27 +35,6 @@ class Images {
             return "";
         }
 
-        $unserialized = unserialize($meta['meta_value']);
-
-        if(!isset($unserialized['file'])){
-            return "";
-        }
-
-        return $unserialized['file'];
-    }
-
-    function getImageSize($imageURL){
-        if(!$imageURL){
-            return array('image_width'=>0, 'image_height'=>0);
-        }
-        // Replace the site URL with the absolute path
-        $image_path = str_replace($this->settings['wp']['url'], $this->settings['wp']['absolute_path'], $imageURL);
-        
-        if(!file_exists($image_path)){
-            return array('image_width'=>0, 'image_height'=>0);
-        }
-
-        $size = getimagesize($image_path);
-        return array('image_width'=>$size[0], 'image_height'=>$size[1]);
+        return unserialize($meta['meta_value']);
     }
 }
