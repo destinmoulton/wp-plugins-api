@@ -7,6 +7,7 @@ $config['addContentLengthHeader'] = false;
 // Wordpress Settings
 $config['wp']['url'] = "http://urltowp.com";
 $config['wp']['absolute_path'] = "/path/to/wp";
+$config['wp']['uploads_url'] = $config['wp']['url'] . "/wp-content/uploads/";
 
 // Wordpress Database connection credentials
 $config['db']['host']   = "localhost";
