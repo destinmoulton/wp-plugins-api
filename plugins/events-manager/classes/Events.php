@@ -38,11 +38,17 @@ class Events{
             // Add the location data to the array
             $evData['location'] = $locations->getLocation($event['location_id']);
 
-            // Add the attached image to the array
-            $evData['image_url'] = $images->getImageForEvent($event['post_id']);
+            // Get the unserialized image attachment
+            $imageInfo = $images->getImageForEvent($event['post_id']);
+            if(!$imageInfo){
+                $evData['image_url'] = "";
+                $evData['image_size'] = "";
+            } else {
+                $evData['image_url'] = $imageInfo['file'];
 
-            // Get the image size info
-            $evData['image_size'] = $images->getImageSize($evData['image_url']);
+                // Get the image size info
+                $evData['image_size'] = array('image_width'=>$imageInfo['width'], 'image_height'=>$imageInfo['height']);
+            }
             
             // Convert the html content into text
             //    NOTE: the second parameter needs to be true so errors in html are hidden
