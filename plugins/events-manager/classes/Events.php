@@ -44,7 +44,7 @@ class Events{
                 $evData['image_url'] = "";
                 $evData['image_size'] = "";
             } else {
-                $evData['image_url'] = $imageInfo['file'];
+                $evData['image_url'] = $this->settings['wp']['uploads_url'] . $imageInfo['file'];
 
                 // Get the image size info
                 $evData['image_size'] = array('image_width'=>$imageInfo['width'], 'image_height'=>$imageInfo['height']);
