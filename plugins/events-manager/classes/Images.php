@@ -23,18 +23,25 @@ class Images {
             return "";
         }
 
-        // Get the post with the thumbnail info
+        // Get the attachment info from the postmeta table
         $select = $this->db->select()
-                           ->from($this->settings['db']['prefix'] . self::POSTS_TABLE)
-                           ->where("ID", "=", $image['meta_value']);
+                           ->from($this->settings['db']['prefix'] . self::META_TABLE)
+                           ->where("meta_key", "=", "_wp_attachment_metadata")
+                           ->where("post_id", "=", $image['meta_value']);
         $stmt = $select->execute();
-        $post = $stmt->fetch();
+        $meta = $stmt->fetch();
 
-        if(!isset($post['guid'])){
+        if(!isset($meta['meta_value'])){
             return "";
         }
 
-        return $post['guid'];
+        $unserialized = unserialize($meta['meta_value']);
+
+        if(!isset($unserialized['file'])){
+            return "";
+        }
+
+        return $unserialized['file'];
     }
 
     function getImageSize($imageURL){
