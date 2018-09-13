@@ -40,7 +40,7 @@ It is highly recommended that the database user be given **READ ONLY** access to
 
 ### NotORM
 
-[NotORM](http://www.notorm.com/) is used to interact with the database. An ORM would be overkill for this API. NotORM provides speed and a simple query syntax that makes it perfect for an API like this.
+[NotORM](http://www.notorm.com/) is used to interact with the database. An ORM would be overkill for this API.
 
 ### License
 
