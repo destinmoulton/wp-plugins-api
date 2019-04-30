@@ -21,7 +21,8 @@ class Events{
                             ->from($this->settings['db']['prefix'] . self::EVENTS_TABLE)
                             ->where("event_start_date", "=", $date)
                             ->where("event_status", "=", 1)
-                            ->where("recurrence", "=", 0)
+                            ->where("recurrence", "!=", 1)
+                            ->orWhereNull("recurrence")
                             ->orderBy("event_start_date", "ASC")
                             ->orderBy("event_start_time", "ASC");
         $stmt = $select->execute();
